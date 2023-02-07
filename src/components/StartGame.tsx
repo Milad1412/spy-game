@@ -53,17 +53,17 @@ const StartGame: React.FC<StartGameProps> = ({
       <div>
         {/* select number of whole players */}
         <div className="pb-8">
-          <p className="pb-3">تعداد کل بازیکنان</p>
+          <p className="pb-3 text-2xl">تعداد کل بازیکنان</p>
           <div className="flex items-center justify-between">
             <div
-              className="text-center leading-none bg-gray-400 w-8 h-8 text-gray-900 rounded-md text-2xl"
+              className="flex items-center justify-center leading-none bg-gray-400 w-14 h-14 text-gray-900 rounded-md text-3xl"
               onClick={incrementAllPlayers}
             >
               +
             </div>
-            <div>{numberOfAllPlayers}</div>
+            <div className="text-3xl">{numberOfAllPlayers}</div>
             <div
-              className="text-center leading-none bg-gray-400 w-8 h-8 text-gray-900 rounded-md text-2xl"
+              className="flex items-center justify-center leading-none bg-gray-400 w-14 h-14 text-gray-900 rounded-md text-3xl"
               onClick={decrementAllPlayers}
             >
               -
@@ -73,17 +73,17 @@ const StartGame: React.FC<StartGameProps> = ({
 
         {/* select number of spies */}
         <div>
-          <p className="pb-3">تعداد جاسوس ها</p>
+          <p className="pb-3 text-2xl">تعداد جاسوس ها</p>
           <div className="flex items-center justify-between">
             <div
-              className="text-center leading-none bg-gray-400 w-8 h-8 text-gray-900 rounded-md text-2xl"
+              className="flex items-center justify-center leading-none bg-gray-400 w-14 h-14 text-gray-900 rounded-md text-3xl"
               onClick={incrementNumberOfSpies}
             >
               +
             </div>
-            <div>{numberOfSpies}</div>
+            <div className="text-3xl">{numberOfSpies}</div>
             <div
-              className="text-center leading-none bg-gray-400 w-8 h-8 text-gray-900 rounded-md text-2xl"
+              className="flex items-center justify-center leading-none bg-gray-400 w-14 h-14 text-gray-900 rounded-md text-3xl"
               onClick={decrementNumberOfSpies}
             >
               -
@@ -95,7 +95,7 @@ const StartGame: React.FC<StartGameProps> = ({
       <div className="h-full flex items-center">
         <button
           onClick={onGameStart}
-          className="w-full h-12 bg-green-800 rounded-lg text-white flex items-center justify-center"
+          className="w-full h-12 bg-green-800 text-2xl rounded-lg text-white flex items-center justify-center"
         >
           شروع بازی
         </button>
