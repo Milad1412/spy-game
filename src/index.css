@@ -3,7 +3,12 @@
 @tailwind utilities;
 
 @layer base {
+  @font-face {
+    font-family: IRANKharazmi;
+    src: url('./assets/fonts/IRAN\ Kharazmi.woff');
+  }
   body {
     @apply bg-gray-800 text-gray-200;
+    font-family: IRANKharazmi;
   }
 }

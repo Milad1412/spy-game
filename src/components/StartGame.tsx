@@ -1,15 +1,29 @@
-import { useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 
 type StartGameProps = {
   onGameStart: () => void
+  onSelectSpies: (spies: number) => void
+  onSelectAllPlayers: (allPlayers: number) => void
 }
 
-const StartGame: React.FC<StartGameProps> = ({ onGameStart }) => {
+const StartGame: React.FC<StartGameProps> = ({
+  onGameStart,
+  onSelectAllPlayers,
+  onSelectSpies,
+}) => {
   const [numberOfAllPlayers, setNumberOfAllPlayers] = useState(3)
   const [numberOfSpies, setNumberOfSpies] = useState(1)
 
+  useEffect(() => {
+    onSelectAllPlayers(numberOfAllPlayers)
+  }, [numberOfAllPlayers])
+
+  useEffect(() => {
+    onSelectSpies(numberOfSpies)
+  }, [numberOfSpies])
+
   const decrementAllPlayers = () => {
-    if (numberOfAllPlayers > 3) {
+    if (numberOfAllPlayers > 3 && numberOfSpies * 2 < numberOfAllPlayers - 1) {
       setNumberOfAllPlayers((prevState) => prevState - 1)
     }
   }
@@ -35,7 +49,7 @@ const StartGame: React.FC<StartGameProps> = ({ onGameStart }) => {
   }
 
   return (
-    <div className="flex flex-col justify-between p-4 h-full">
+    <div className="flex flex-col justify-between p-4 h-full w-full">
       <div>
         {/* select number of whole players */}
         <div className="pb-8">
@@ -78,14 +92,16 @@ const StartGame: React.FC<StartGameProps> = ({ onGameStart }) => {
         </div>
       </div>
 
-      <button
-        onClick={onGameStart}
-        className="w-full h-12 bg-green-800 rounded-lg text-white flex items-center justify-center"
-      >
-        شروع بازی
-      </button>
+      <div className="h-full flex items-center">
+        <button
+          onClick={onGameStart}
+          className="w-full h-12 bg-green-800 rounded-lg text-white flex items-center justify-center"
+        >
+          شروع بازی
+        </button>
+      </div>
     </div>
   )
 }
 
-export default StartGame
+export default memo(StartGame)
