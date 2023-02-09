@@ -11,30 +11,40 @@ const StartGame: React.FC<StartGameProps> = ({
   onSelectAllPlayers,
   onSelectSpies,
 }) => {
-  const [numberOfAllPlayers, setNumberOfAllPlayers] = useState(3)
-  const [numberOfSpies, setNumberOfSpies] = useState(1)
+  const [numberOfAllPlayers, setNumberOfAllPlayers] = useState(
+    JSON.parse(localStorage.getItem('allPlayers') as string)
+      ? JSON.parse(localStorage.getItem('allPlayers') as string)
+      : 3
+  )
+  const [numberOfSpies, setNumberOfSpies] = useState(
+    JSON.parse(localStorage.getItem('spyPlayers') as string)
+      ? JSON.parse(localStorage.getItem('spyPlayers') as string)
+      : 1
+  )
 
   useEffect(() => {
     onSelectAllPlayers(numberOfAllPlayers)
+    localStorage.setItem('allPlayers', JSON.stringify(numberOfAllPlayers))
   }, [numberOfAllPlayers])
 
   useEffect(() => {
     onSelectSpies(numberOfSpies)
+    localStorage.setItem('spyPlayers', JSON.stringify(numberOfSpies))
   }, [numberOfSpies])
 
   const decrementAllPlayers = () => {
     if (numberOfAllPlayers > 3 && numberOfSpies * 2 < numberOfAllPlayers - 1) {
-      setNumberOfAllPlayers((prevState) => prevState - 1)
+      setNumberOfAllPlayers((prevState: number) => prevState - 1)
     }
   }
 
   const incrementAllPlayers = () => {
-    setNumberOfAllPlayers((prevState) => prevState + 1)
+    setNumberOfAllPlayers((prevState: number) => prevState + 1)
   }
 
   const decrementNumberOfSpies = () => {
     if (numberOfSpies > 1) {
-      setNumberOfSpies((prevState) => prevState - 1)
+      setNumberOfSpies((prevState: number) => prevState - 1)
     }
   }
 
@@ -44,7 +54,7 @@ const StartGame: React.FC<StartGameProps> = ({
       numberOfAllPlayers !== 4 &&
       numberOfSpies * 2 < numberOfAllPlayers - 1
     ) {
-      setNumberOfSpies((prevState) => prevState + 1)
+      setNumberOfSpies((prevState: number) => prevState + 1)
     }
   }
 
